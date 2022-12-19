@@ -10,17 +10,17 @@ else
 fi
 }
 
-RESULT=$(echo "3 2" | ./main)
-assert "$RESULT" "0.105946 0.105946"
+RESULT=$(echo "2" | ./main)
+assert "$RESULT" "0.954774 1.818595"
 
-RESULT=$(echo "5 5" | ./main)
-assert "$RESULT" "0.000000 0.000000"
+RESULT=$(echo "55" | ./main)
+assert "$RESULT" "2.084080 -1.999510"
 
-RESULT=$(echo "10 6" | ./main)
-assert "$RESULT" "0.071279 0.071279"
+RESULT=$(echo "90" | ./main)
+assert "$RESULT" "1.250213 1.787993"
 
-RESULT=$(echo "3 5" | ./main)
-assert "$RESULT" "-0.168006 -0.168006"
+RESULT=$(echo "120" | ./main)
+assert "$RESULT" "0.026941 1.161222"
 
-RESULT=$(echo "7 4" | ./main)
-assert "$RESULT" "0.092250 0.092250"
+RESULT=$(echo "85" | ./main)
+assert "$RESULT" "-1.706082 -0.352151"
