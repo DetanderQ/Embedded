@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define LASTEL -1
+
 struct Book {
 	char title[50];
 	float price;
@@ -17,7 +19,6 @@ struct Node {
 
 struct List {
 	struct Node* first;
-	int size;
 };
 
 struct List* newList() {
@@ -32,11 +33,17 @@ struct Node* newNode(struct Book* book, struct Node* next) {
 }
 
 struct Node* findNode(struct List* list, int n) {
-	if ((n < 0) || (n > list->size -1)) {
+	if (n < -1) {
 		printf("Element doesn`t exist");
 		return NULL;
 	}
 	struct Node* tmp = list->first;
+	if (n == LASTEL) {
+		while(tmp->next != NULL) {
+			tmp = tmp->next;	
+		}
+		return tmp;
+	}
 	for(int i = 0; i != n; i++) {
 		tmp = tmp->next;
 	}
@@ -44,15 +51,13 @@ struct Node* findNode(struct List* list, int n) {
 }
 
 void addToList(struct List* list, struct Book* book) {
-	if (list->size == 0) {
+	if (list->first == NULL) {
 		list->first = newNode(book, NULL);
-		list->size++;
 		return;
 	}
-	struct Node* tmp = findNode(list, list->size - 1);
+	struct Node* tmp = findNode(list, LASTEL);
 	if (tmp != NULL) {
 		tmp->next = newNode(book, NULL);
-		list->size++;
 	}
 }
 
@@ -63,11 +68,11 @@ void freeNode(struct Node* node) {
 
 void freeList(struct List* list) {
 	struct Node* current = list->first;
-	for(int i = 0; i < list->size; i++) {
-		struct Node* tmp = current;
-		current = current->next;
-		freeNode(tmp); 
-	}
+		while(current != NULL) {
+			struct Node* tmp = current;
+			current = current->next;
+			freeNode(tmp); 
+		}
 	free(list);
 }
 
@@ -87,7 +92,10 @@ void printBook(struct Book* book) {
 
 void printList(struct List* list) {
 	struct Node* tmp = list->first;
-	for(int i = 0; i < list->size; i++) {
+	if (list->first == NULL) {
+		return;
+	}
+	while(tmp != NULL)  {
 		printBook(tmp->value);
 		tmp = tmp->next;
 	}
