@@ -1,0 +1,2 @@
+	The task is to create three different flashing schemes for the four LEDs on the board, using two buttons to switch schemes and two to increase / decrease intensity, and one button to turn off all LEDs.
+	Solution: 3 different LEDs flashing schemes are created, switching between which occurs by pressing the GPIO_PIN_6 and GPIO_PIN_8 buttons and the "switch" operator. Buttons GPIO_PIN_9 and GPIO_PIN_11 are used to decrease / increase the blinking intensity. The GPIO_PIN_15 button is designed to turn off all LEDs.
