@@ -1,0 +1,2 @@
+The task is to use the PWM generator to set the frequency of the signal and its duty cycle using four buttons, the fifth button should be used to select the LED used or the lack of it.
+Solution: using the GPIO_PIN_15 button and the operator "switch", the LED is selected or not, the GPIO_PIN_11 and GPIO_PIN_9 buttons are for increasing / decreasing Duty Cycle, and the GPIO_PIN_6 and GPIO_PIN_8 buttons are use for frequency increasing / decreasing.
