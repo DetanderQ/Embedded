@@ -165,7 +165,7 @@ int main(void)
 	  }
   }
 
-  void ReadMemory(void)
+  void readMem(void)
   {
   	uint8_t readData;
   	uint16_t emptySector;
@@ -222,7 +222,7 @@ int main(void)
   		}
   }
 
-  void isItBusy(void)
+  void isItReceive(void)
   {
   	uint8_t readCommand = RDSR;
   	uint8_t readRegister = 0;
@@ -235,7 +235,7 @@ int main(void)
   {
 	  uint8_t tx = MEM_ERASE;
 	  SPICommand(&tx, NULL, 1, NULL, Write);
-	  isItBusy();
+	  isItReceive();
 	  printf("Memory clear\r\n");
   }
 
@@ -302,7 +302,7 @@ int main(void)
   		  switch (Buf[0])
   		  {
   		  	  case '1':
-  		  		ReadMemory();
+  		  		readMem();
   		  		break;
 
   		  	  case '2':
@@ -313,7 +313,6 @@ int main(void)
   		  		writeMem();
   		  		break;
   		  	  default:
-  		  		HAL_UART_Transmit(&huart3, (uint8_t *)"UnexpCmd\r\n", 8, 10);
   		  		printf("UnexpCmd\r\n");
   		  		break;
   		  }
